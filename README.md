@@ -23,3 +23,11 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+
+
+
+In order to get searched movies to display as "in watchlist"
+Everytime you render a searched movie item, you fetch the watchlist and map through the watchlist and see if any of the watchlist items ids match the searched movie item id
+If they don't just render the movie item
+If they DO render the watchlist movie item OR render the movie with styling that says IN WATCHLIST
