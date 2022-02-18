@@ -61,3 +61,7 @@
   margin: 10px;
   width: 200px;
 }
+
+.search-page form * {
+  margin: 5px;
+}

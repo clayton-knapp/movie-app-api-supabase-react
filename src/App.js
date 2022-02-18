@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import AuthPage from './pages/AuthPage';
 import SearchPage from './pages/SearchPage';
 import { getUser, logout } from './services/fetch-utils';
+import WatchlistPage from './pages/WatchlistPage';
 
 function App() {
   //track user in state
@@ -35,9 +36,19 @@ function App() {
       <div className="App">
         <header>
           {
-            (user) && <button
-              onClick={handleLogout}
-            >Log out</button>
+            (user) && <ul style={{ listStyle: 'none' }}>
+              <li>
+                <NavLink to='/search'>Movie Search</NavLink>
+              </li>
+              <li>
+                <NavLink to='/watchlist'>Your Watchlist</NavLink>
+              </li>
+              <li>
+                <button
+                  onClick={handleLogout}
+                >Log out</button>
+              </li>
+            </ul>
           }
         </header>
         <main>
@@ -55,6 +66,13 @@ function App() {
               {
                 (user)
                   ? <SearchPage />
+                  : <Redirect to='/' />
+              }
+            </Route>
+            <Route exact path='/watchlist'>
+              {
+                (user)
+                  ? <WatchlistPage />
                   : <Redirect to='/' />
               }
             </Route>
