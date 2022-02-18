@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieItem from './MovieItem';
 
-export default function MovieList({ movies }) {
+export default function MovieList({ movies, isOnWatchlist, fetchAndSetWatchlist }) {
 
   return (
     <div className='movie-list'>
@@ -9,6 +9,8 @@ export default function MovieList({ movies }) {
         movies.map((movie, i)=>
           <MovieItem key={movie + i}
             movie={movie}
+            isOnWatchlist={isOnWatchlist}
+            fetchAndSetWatchlist={fetchAndSetWatchlist}
           />
         )
       }

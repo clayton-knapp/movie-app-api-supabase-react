@@ -1,13 +1,32 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Spinner from '../components/Spinner.jsx';
 import MovieList from '../components/MovieList.jsx';
+import { fetchWatchList } from '../services/fetch-utils.js';
 
 
 export default function SearchPage() {
   const [search, setSearch] = useState('Jaws');
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [watchlistMovies, setWatchlistMovies] = useState();
+
+  async function fetchAndSetWatchlist() {
+    const watchlistMovies = await fetchWatchList();
+    setWatchlistMovies(watchlistMovies);
+  }
+
+  useEffect(() => {
+    fetchAndSetWatchlist();
+  }, []);
+
+  // function to check if given a movie ID if it matches an api id of a watchlist item and if so should return true for match
+  function isOnWatchlist(api_id) {
+    //find() returns the value of the first element that passes a test
+    const match = watchlistMovies.find(watchlistMovie => watchlistMovie.api_id === api_id);
+    // console.log(Boolean(match));
+    return Boolean(match);
+  }
 
 
   async function handleSearchSubmit(e){
@@ -45,7 +64,11 @@ export default function SearchPage() {
         {
           (isLoading)
             ? <Spinner/>
-            : <MovieList movies={movies}/>
+            : <MovieList 
+              movies={movies}
+              isOnWatchlist={isOnWatchlist}
+              fetchAndSetWatchlist={fetchAndSetWatchlist}
+            />
         }
 
       </div>

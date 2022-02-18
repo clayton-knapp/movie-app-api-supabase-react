@@ -1,24 +1,12 @@
 import React from 'react';
 import { addToWatchList } from '../services/fetch-utils';
 import { useState, useEffect } from 'react';
-import { fetchWatchList } from '../services/fetch-utils';
 
-export default function MovieItem({ movie }) {
-  const [watchlistMovies, setWatchlistMovies] = useState();
+export default function MovieItem({ movie, isOnWatchlist, fetchAndSetWatchlist }) {
 
-  async function fetchAndSetWatchlist() {
-    const watchlistMovies = await fetchWatchList();
-    setWatchlistMovies(watchlistMovies);
-  }
-
-  useEffect(() => {
-    fetchAndSetWatchlist();
-  }, []);
-
-  // console.log(watchlistMovies);
+  // console.log('api_id', movie.id);
+  const onWatchlistBool = isOnWatchlist(movie.id);
   
-
-
   async function handleMovieClick() {
     const movieObj = {
       api_id: movie.id,
@@ -28,7 +16,7 @@ export default function MovieItem({ movie }) {
     };
 
     await addToWatchList(movieObj);
-    //on click re-fetch and watchlist
+    // on click re-fetch and watchlist
     fetchAndSetWatchlist();
   }
 
@@ -38,10 +26,7 @@ export default function MovieItem({ movie }) {
     >
       <p>
         {
-          (watchlistMovies) &&
-          watchlistMovies.map((watchlistMovie, i) =>
-            (watchlistMovie.api_id === movie.id) && 'In Watchlist 👀'
-          )
+          (onWatchlistBool) && 'In Watchlist 👀'
         }
       </p>
       <h2>{movie.title}</h2>

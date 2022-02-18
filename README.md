@@ -31,3 +31,7 @@ In order to get searched movies to display as "in watchlist"
 Everytime you render a searched movie item, you fetch the watchlist and map through the watchlist and see if any of the watchlist items ids match the searched movie item id
 If they don't just render the movie item
 If they DO render the watchlist movie item OR render the movie with styling that says IN WATCHLIST
+
+But instead of fetching the watchlist every time we render a movie item
+lets fetch it when we load the search page, write a function to check if a movie id matched the watlist items api id and pass that function down.
+Then if our function returns true in our movie component we can do stuff
