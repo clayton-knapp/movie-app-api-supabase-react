@@ -1,5 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import Spinner from '../components/Spinner.jsx';
+import MovieList from '../components/MovieList.jsx';
+
 
 export default function SearchPage() {
   const [search, setSearch] = useState('Jaws');
@@ -20,7 +23,6 @@ export default function SearchPage() {
 
     setMovies(json.results);
 
-
     setIsLoading(false);
   }
 
@@ -40,6 +42,11 @@ export default function SearchPage() {
         <button>Submit</button>
       </form>
       <div className='movie-results'>
+        {
+          (isLoading)
+            ? <Spinner/>
+            : <MovieList movies={movies}/>
+        }
 
       </div>
     </div>
