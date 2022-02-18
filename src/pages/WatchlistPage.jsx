@@ -8,11 +8,12 @@ export default function WatchlistPage() {
   const [watchlist, setWatchlist] = useState([]);
 
   //on load fetch and set watchlist
+  async function fetchAndSetWatchlist() {
+    const watchlist = await fetchWatchList();
+    setWatchlist(watchlist);
+  }
+
   useEffect(() => {
-    async function fetchAndSetWatchlist() {
-      const watchlist = await fetchWatchList();
-      setWatchlist(watchlist);
-    }
     fetchAndSetWatchlist();
   }, []);
 
@@ -24,6 +25,7 @@ export default function WatchlistPage() {
           watchlist.map((watchlistMovie, i) =>
             <WatchlistItem key={watchlistMovie + i}
               watchlistMovie={watchlistMovie}
+              fetchAndSetWatchlist={fetchAndSetWatchlist}
             />
           )
         }

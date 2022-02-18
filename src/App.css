@@ -85,3 +85,7 @@
 .movie-item img {
   width: 150px;
 }
+
+.watched {
+  opacity: .5;
+}
