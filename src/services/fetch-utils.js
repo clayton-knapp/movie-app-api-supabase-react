@@ -1,5 +1,17 @@
 import { client } from './client';
 
+export async function addToWatchList(movie) {
+  const response = await client
+    .from('watchlist')
+    .insert(movie);
+
+  return checkError(response);
+}
+
+
+
+
+
 //AUTH STUFF
 
 export async function getUser() {
