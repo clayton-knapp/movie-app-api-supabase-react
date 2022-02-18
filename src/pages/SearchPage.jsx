@@ -28,6 +28,13 @@ export default function SearchPage() {
     return Boolean(match);
   }
 
+  function isWatched(api_id) {
+    //find() returns the value of the first element that passes a test
+    const match = watchlistMovies.find(watchlistMovie => watchlistMovie.api_id === api_id && watchlistMovie.watched === true);
+    // console.log(match);
+    return Boolean(match);
+  }
+
 
   async function handleSearchSubmit(e){
     e.preventDefault();
@@ -67,6 +74,7 @@ export default function SearchPage() {
             : <MovieList 
               movies={movies}
               isOnWatchlist={isOnWatchlist}
+              isWatched={isWatched}
               fetchAndSetWatchlist={fetchAndSetWatchlist}
             />
         }

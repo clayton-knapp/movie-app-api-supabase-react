@@ -89,3 +89,7 @@
 .watched {
   opacity: .5;
 }
+
+.on-watchlist {
+  border: 3px solid green;
+}
