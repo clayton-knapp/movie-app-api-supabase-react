@@ -8,6 +8,14 @@ export async function addToWatchList(movie) {
   return checkError(response);
 }
 
+export async function fetchWatchList() {
+  const response = await client
+    .from('watchlist')
+    .select();
+
+  return checkError(response);
+}
+
 
 
 
