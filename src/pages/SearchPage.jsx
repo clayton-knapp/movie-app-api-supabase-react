@@ -56,7 +56,7 @@ export default function SearchPage() {
   //passed down as prop to MovieItem
   async function handleMovieClick(movie) {
     const bool = isOnWatchlist(movie.id);
-    console.log(bool);
+    // console.log(bool);
     
     //makes it so you can't add to your watchlist more than once
     if (!bool) {
