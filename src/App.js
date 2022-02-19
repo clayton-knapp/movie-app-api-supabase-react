@@ -33,6 +33,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <h2>Movie App</h2>
         <header>
           {
             (user) && <ul style={{ listStyle: 'none' }}>
