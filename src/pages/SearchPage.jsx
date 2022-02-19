@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Spinner from '../components/Spinner.jsx';
 import MovieList from '../components/MovieList.jsx';
 import { fetchWatchList } from '../services/fetch-utils.js';
+import { addToWatchList } from '../services/fetch-utils.js';
 
 
 export default function SearchPage() {
@@ -52,6 +53,19 @@ export default function SearchPage() {
     setIsLoading(false);
   }
 
+  async function handleMovieClick(movie) {
+    const movieObj = {
+      api_id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path,
+      overview: movie.overview
+    };
+
+    await addToWatchList(movieObj);
+    // on click re-fetch and watchlist
+    fetchAndSetWatchlist();
+  }
+
 
   return (
     <div className='search-page'>
@@ -75,7 +89,8 @@ export default function SearchPage() {
               movies={movies}
               isOnWatchlist={isOnWatchlist}
               isWatched={isWatched}
-              fetchAndSetWatchlist={fetchAndSetWatchlist}
+              // fetchAndSetWatchlist={fetchAndSetWatchlist}
+              handleMovieClick={handleMovieClick}
             />
         }
 

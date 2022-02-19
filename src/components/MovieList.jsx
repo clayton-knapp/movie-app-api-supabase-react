@@ -1,7 +1,13 @@
 import React from 'react';
 import MovieItem from './MovieItem';
 
-export default function MovieList({ movies, isOnWatchlist, fetchAndSetWatchlist, isWatched }) {
+export default function MovieList({ 
+  movies, 
+  // fetchAndSetWatchlist, 
+  isOnWatchlist, 
+  isWatched,
+  handleMovieClick
+}) {
 
   return (
     <div className='movie-list'>
@@ -11,7 +17,8 @@ export default function MovieList({ movies, isOnWatchlist, fetchAndSetWatchlist,
             movie={movie}
             isOnWatchlist={isOnWatchlist}
             isWatched={isWatched}
-            fetchAndSetWatchlist={fetchAndSetWatchlist}
+            // fetchAndSetWatchlist={fetchAndSetWatchlist}
+            handleMovieClick={handleMovieClick}
           />
         )
       }

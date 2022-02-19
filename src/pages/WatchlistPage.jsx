@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchWatchList } from '../services/fetch-utils';
 import WatchlistItem from '../components/WatchlistItem.jsx';
+import MovieItem from '../components/MovieItem';
 
 export default function WatchlistPage() {
   //track watchlist in state
@@ -25,6 +26,16 @@ export default function WatchlistPage() {
           watchlist.map((watchlistMovie, i) =>
             <WatchlistItem key={watchlistMovie + i}
               watchlistMovie={watchlistMovie}
+              fetchAndSetWatchlist={fetchAndSetWatchlist}
+            />
+          )
+        }
+        {
+          watchlist.map((movie, i)=>
+            <MovieItem key={movie + i}
+              movie={movie}
+              // isOnWatchlist={isOnWatchlist}
+              // isWatched={isWatched}
               fetchAndSetWatchlist={fetchAndSetWatchlist}
             />
           )

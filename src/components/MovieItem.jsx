@@ -2,12 +2,25 @@ import React from 'react';
 import { addToWatchList } from '../services/fetch-utils';
 import { useState, useEffect } from 'react';
 
-export default function MovieItem({ movie, isOnWatchlist, fetchAndSetWatchlist, isWatched }) {
+export default function MovieItem({ 
+  movie, 
+  isOnWatchlist, 
+  isWatched,
+  // fetchAndSetWatchlist, 
+  handleMovieClick
+}) {
+  let onWatchlistBool;
+  let isWatchedBool;
 
-  // console.log('api_id', movie.id);
-  const onWatchlistBool = isOnWatchlist(movie.id);
-  const isWatchedBool = isWatched(movie.id);
+  //Run the bool functions only if they were passed as props
+  if (isOnWatchlist) {
+    onWatchlistBool = isOnWatchlist(movie.id);
+  }
+  if (isWatched) {
+    isWatchedBool = isWatched(movie.id);
+  }
 
+  //function to return class names based on booleans
   function classNames(){
     if (onWatchlistBool && isWatchedBool) {
       return 'movie-item on-watchlist watched';
@@ -27,25 +40,23 @@ export default function MovieItem({ movie, isOnWatchlist, fetchAndSetWatchlist, 
   // const classNameShouldBe = classNames();
   // console.log(classNameShouldBe);
   
-  async function handleMovieClick() {
-    const movieObj = {
-      api_id: movie.id,
-      title: movie.title,
-      poster_path: movie.poster_path,
-      overview: movie.overview
-    };
+  // async function handleMovieClick() {
+  //   const movieObj = {
+  //     api_id: movie.id,
+  //     title: movie.title,
+  //     poster_path: movie.poster_path,
+  //     overview: movie.overview
+  //   };
 
-    await addToWatchList(movieObj);
-    // on click re-fetch and watchlist
-    fetchAndSetWatchlist();
-  }
+  //   await addToWatchList(movieObj);
+  //   // on click re-fetch and watchlist
+  //   fetchAndSetWatchlist();
+  // }
 
   return (
     <div 
       className={classNames()}
-      // (onWatchlistBool) ? 'movie-item on-watchlist' : 'movie-item' 
-      // className={(isWatched) ? 'is-watched' : ''} 
-      onClick={handleMovieClick}
+      onClick={()=> handleMovieClick(movie)}
     >
       <p>
         {
