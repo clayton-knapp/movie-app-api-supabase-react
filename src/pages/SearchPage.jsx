@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Spinner from '../components/Spinner.jsx';
-import MovieList from '../components/MovieList.jsx';
+import MovieItem from '../components/MovieItem.jsx';
 import { fetchWatchList } from '../services/fetch-utils.js';
 import { addToWatchList } from '../services/fetch-utils.js';
 
@@ -46,7 +46,7 @@ export default function SearchPage() {
 
     //jsonify string
     const json = await response.json();
-    console.log(json.results);
+    // console.log(json.results);
 
     setMovies(json.results);
 
@@ -85,13 +85,19 @@ export default function SearchPage() {
         {
           (isLoading)
             ? <Spinner/>
-            : <MovieList 
-              movies={movies}
-              isOnWatchlist={isOnWatchlist}
-              isWatched={isWatched}
-              // fetchAndSetWatchlist={fetchAndSetWatchlist}
-              handleClick={handleMovieClick}
-            />
+            : <div className='movie-list'>
+              {
+                movies.map((movie, i)=>
+                  <MovieItem key={movie + i}
+                    movie={movie}
+                    isOnWatchlist={isOnWatchlist}
+                    isWatched={isWatched}
+                  // fetchAndSetWatchlist={fetchAndSetWatchlist}
+                    handleClick={handleMovieClick}
+                  />
+                )
+              }
+            </div>
         }
 
       </div>

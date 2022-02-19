@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchWatchList } from '../services/fetch-utils';
-import WatchlistItem from '../components/WatchlistItem.jsx';
 import MovieItem from '../components/MovieItem';
 import { updateWatched } from '../services/fetch-utils';
 
@@ -19,8 +18,6 @@ export default function WatchlistPage() {
     fetchAndSetWatchlist();
   }, []);
 
-  // function to check if given a movie ID if it matches an api id of a watchlist item and if so should return true for match
-
   async function handleWatchlistItemClick(movie) {
     await updateWatched(movie.api_id);
     //after click re-fetch and set watchlist
@@ -32,15 +29,6 @@ export default function WatchlistPage() {
     <div className='watchlist-page'>
       <h2>Your Watchlist:</h2>
       <div className='movie-list'>
-        {
-          watchlist.map((watchlistMovie, i) =>
-            <WatchlistItem key={watchlistMovie + i}
-              watchlistMovie={watchlistMovie}
-              fetchAndSetWatchlist={fetchAndSetWatchlist}
-            />
-          )
-        }
-        <p>-------------------------</p>
         {
           watchlist.map((movie, i)=>
             <MovieItem key={movie + i}

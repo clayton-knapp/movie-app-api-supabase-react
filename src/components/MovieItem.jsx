@@ -1,12 +1,11 @@
 import React from 'react';
-import { addToWatchList } from '../services/fetch-utils';
-import { useState, useEffect } from 'react';
+// import { addToWatchList } from '../services/fetch-utils';
+// import { useState, useEffect } from 'react';
 
 export default function MovieItem({ 
   movie, 
   isOnWatchlist, 
   isWatched,
-  // fetchAndSetWatchlist, 
   handleClick
 }) {
   let onWatchlistBool;
@@ -22,7 +21,7 @@ export default function MovieItem({
 
   //function to return class names based on booleans
   function classNames(){
-    if (onWatchlistBool && isWatchedBool) {
+    if (onWatchlistBool && (isWatchedBool || movie.watched)) {
       return 'movie-item on-watchlist watched';
     }
     else if (onWatchlistBool) {
