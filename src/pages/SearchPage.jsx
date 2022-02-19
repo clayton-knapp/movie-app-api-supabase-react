@@ -90,7 +90,7 @@ export default function SearchPage() {
               isOnWatchlist={isOnWatchlist}
               isWatched={isWatched}
               // fetchAndSetWatchlist={fetchAndSetWatchlist}
-              handleMovieClick={handleMovieClick}
+              handleClick={handleMovieClick}
             />
         }
 

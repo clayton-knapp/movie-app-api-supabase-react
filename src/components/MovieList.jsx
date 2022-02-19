@@ -6,7 +6,7 @@ export default function MovieList({
   // fetchAndSetWatchlist, 
   isOnWatchlist, 
   isWatched,
-  handleMovieClick
+  handleClick
 }) {
 
   return (
@@ -18,7 +18,7 @@ export default function MovieList({
             isOnWatchlist={isOnWatchlist}
             isWatched={isWatched}
             // fetchAndSetWatchlist={fetchAndSetWatchlist}
-            handleMovieClick={handleMovieClick}
+            handleClick={handleClick}
           />
         )
       }

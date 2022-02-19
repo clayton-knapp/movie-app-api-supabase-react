@@ -28,7 +28,6 @@ function App() {
     await logout();
     setUser(null);
   }
-  
 
 
   return (

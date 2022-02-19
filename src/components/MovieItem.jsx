@@ -7,7 +7,7 @@ export default function MovieItem({
   isOnWatchlist, 
   isWatched,
   // fetchAndSetWatchlist, 
-  handleMovieClick
+  handleClick
 }) {
   let onWatchlistBool;
   let isWatchedBool;
@@ -29,7 +29,7 @@ export default function MovieItem({
       return 'movie-item on-watchlist';
     }
     //THIS CASE SHOULD NEVER HAPPEN
-    else if (isWatchedBool) {
+    else if (isWatchedBool || movie.watched) {
       return 'movie-item watched';
     }
     else {
@@ -37,30 +37,14 @@ export default function MovieItem({
     }
   }
 
-  // const classNameShouldBe = classNames();
-  // console.log(classNameShouldBe);
-  
-  // async function handleMovieClick() {
-  //   const movieObj = {
-  //     api_id: movie.id,
-  //     title: movie.title,
-  //     poster_path: movie.poster_path,
-  //     overview: movie.overview
-  //   };
-
-  //   await addToWatchList(movieObj);
-  //   // on click re-fetch and watchlist
-  //   fetchAndSetWatchlist();
-  // }
-
   return (
     <div 
       className={classNames()}
-      onClick={()=> handleMovieClick(movie)}
+      onClick={()=> handleClick(movie)}
     >
       <p>
         {
-          (isWatchedBool) && 'Watched ✅'
+          (isWatchedBool || movie.watched) && 'Watched ✅'
         }
       </p>
       <p>
