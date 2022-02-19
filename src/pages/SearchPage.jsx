@@ -53,6 +53,7 @@ export default function SearchPage() {
     setIsLoading(false);
   }
 
+  //passed down as prop to MovieItem
   async function handleMovieClick(movie) {
     const movieObj = {
       api_id: movie.id,
