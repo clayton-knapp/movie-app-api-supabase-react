@@ -55,16 +55,22 @@ export default function SearchPage() {
 
   //passed down as prop to MovieItem
   async function handleMovieClick(movie) {
-    const movieObj = {
-      api_id: movie.id,
-      title: movie.title,
-      poster_path: movie.poster_path,
-      overview: movie.overview
-    };
-
-    await addToWatchList(movieObj);
-    // on click re-fetch and watchlist
-    fetchAndSetWatchlist();
+    const bool = isOnWatchlist(movie.id);
+    console.log(bool);
+    
+    //makes it so you can't add to your watchlist more than once
+    if (!bool) {
+      const movieObj = {
+        api_id: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+        overview: movie.overview
+      };
+  
+      await addToWatchList(movieObj);
+      // on click re-fetch and watchlist
+      fetchAndSetWatchlist();
+    }
   }
 
 
